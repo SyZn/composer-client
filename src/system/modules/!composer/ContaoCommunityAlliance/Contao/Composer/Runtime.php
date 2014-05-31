@@ -55,10 +55,9 @@ EOF;
     "type": "project",
     "license": "proprietary",
     "require": {
-        "contao-community-alliance/composer": "~0.12"
+        "contao-community-alliance/composer": "~1.0"
     },
     "prefer-stable": true,
-    "minimum-stability": "dev",
     "config": {
         "preferred-install": "dist",
         "cache-dir": "cache"
