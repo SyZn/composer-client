@@ -50,7 +50,7 @@ class Downloader
         }
 
         $fileStream = fopen($file, 'wb+');
-        
+
         fwrite($fileStream, file_get_contents($url));
         $headers              = $http_response_header;
         $firstHeaderLine      = $headers[0];
