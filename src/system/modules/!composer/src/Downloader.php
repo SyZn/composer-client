@@ -51,14 +51,7 @@ class Downloader
 
         $fileStream = fopen($file, 'wb+');
         
-        // use cURL if it is available.
-        $get_contents_fn = 'file_get_contents';
-		if(function_exists('curl_version'))
-		{
-			$get_contents_fn = 'self::curl_get_contents';
-		}
-
-        fwrite($fileStream, call_user_func($get_contents_fn,$url));
+        fwrite($fileStream, file_get_contents($url));
         $headers              = $http_response_header;
         $firstHeaderLine      = $headers[0];
         $firstHeaderLineParts = explode(' ', $firstHeaderLine);
@@ -82,24 +75,6 @@ class Downloader
 
         return $return;
     }
-    
-    /**
-     * 
-    public static function curl_get_contents($url)
-	{
-		$handle = curl_init();
-		
-		curl_setopt($handle, CURLOPT_AUTOREFERER, TRUE);
-		curl_setopt($handle, CURLOPT_HEADER, 0);
-		curl_setopt($handle, CURLOPT_RETURNTRANSFER, 1);
-		curl_setopt($handle, CURLOPT_URL, $url);
-		curl_setopt($handle, CURLOPT_FOLLOWLOCATION, TRUE);
-		
-		$data = curl_exec($handle);
-		curl_close($handle);
-		
-		return $data;
-	}
 
     /**
      * @param      $url
